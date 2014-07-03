@@ -26,6 +26,6 @@ def table_read(request):
             TableList.append({'table': TableEntryObject.title, 'reserved': ReservationEntry.objects.get(table=TableEntryObject).name })
 
    
-    return render(request, 'table/table_show.html',
+    return render(request, 'table/table_read.html',
           { 'page_active': 3,
           'res': TableList })

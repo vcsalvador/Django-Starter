@@ -11,7 +11,7 @@ def reservation_read(request):
     else:
         res = ReservationEntry.objects.all()
 
-    return render(request, 'reservation/reservation_show.html',  { 
+    return render(request, 'reservation/reservation_read.html',  { 
         'page_active': 2,
         'res': res  })
 
