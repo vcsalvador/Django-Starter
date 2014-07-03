@@ -7,7 +7,6 @@ Python Django MVC sample app showing restaraunt reservations for tables and food
 
 Setup your database in config/settings.py: SQLite file is used default, but can be changed to mysql. Then inject the SQL from initialize.sql. 
 
-
 Execute:
 
 python manage.py runserver 80
