@@ -1,0 +1,26 @@
+
+<!-- header -->
+<div class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+           
+            <a class="navbar-brand" href="/">Reservation Menu</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li {% if page == 1%}{{ 'class=active' }}{% endif %} ><a href="{% url 'index' %}">Create</a></li>
+                <li {% if page == 2%}{{ 'class=active' }}{% endif %}><a href="{% url 'reservation_read' %}">Reservations</a></li>
+                <li {% if page == 3%}{{ 'class=active' }}{% endif %}><a href="{% url 'table_read' %}">Tables</a></li>
+                 <li {% if page == 4%}{{ 'class=active' }}{% endif %}><a href="{% url 'food_read' %}">Food Menu</a></li>
+                <li class="dropdown dropdown-inverse">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">... <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>

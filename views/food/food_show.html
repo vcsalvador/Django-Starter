@@ -1,0 +1,135 @@
+
+
+{% extends "./base.html" %}
+
+
+ {% block title %}  Show Food Menu   {% endblock %}
+
+
+ {% block header %}  
+
+
+
+ <script>
+
+$(document).ready(function() {
+
+
+   $(".food-delete").click(function(event) {
+    
+      var food_name = $(this).parent().parent().find("td:first").text();
+          
+         
+      $.get("/food/delete", {food_name: food_name}, function(){
+
+         location.reload();
+      });
+
+     
+
+  });
+
+
+  $(".food-add-button").click(function(event) {
+    
+    var food_name = $(".food-add-name").val();
+    var food_price = $(".food-add-price").val();
+
+    if (food_name.length == 0  ){
+      $(".food-add-name").popover({ content : "Must enter food name", placement: "bottom"});
+      $(".food-add-name").popover('show');
+    } else if (food_price.length == 0){
+      $(".food-add-price").popover({ content : "Must enter food price", placement: "bottom"});
+      $(".food-add-price").popover('show');
+
+    }else {
+
+         $.get("/food/create", {food_name: food_name, food_price: food_price}, function(){
+
+           location.reload();
+        });
+
+     }
+
+
+  });
+
+});
+
+
+ </script>
+
+
+
+ {% endblock %}
+
+
+ {% block content %}
+
+{% include "header.html" with page=page_active|default:0 %}
+
+
+<div id="main" class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title" >Show Food Menu </h1>
+  </div>
+  <div class="panel-body">
+ <div class="input-group">
+                 <span class="input-group-addon">
+                 <button class="btn btn-xs btn-default food-add-button"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                 </span>
+                <input type="text" class="form-control food-add-name" placeholder="Type food name here">
+                 <input type="text" class="form-control food-add-price" placeholder="Type food price here">
+              </div>
+
+<table class="table">
+              <thead>
+                <tr>
+                 
+                  <th> Name</th>
+
+                  <th> Price</th>
+                    <th>Manage</th>
+                </tr>
+              </thead>
+              <tbody>
+
+				    	
+				{% for r in res %}
+				<tr>
+         
+            <td>{{ r.title }}</td>
+          
+          
+            <td>{{ r.price }}</td>
+
+           <td>
+    <button class="btn btn-xs btn-default food-delete"><span class="glyphicon glyphicon-remove"></span>
+    </button>
+    </td>
+				  
+				</tr>
+
+
+				{% endfor %}
+
+
+              </tbody>
+
+              
+            </table>
+
+
+  
+
+  
+
+
+
+</div>
+</div>
+
+
+
+{% endblock %}
+
