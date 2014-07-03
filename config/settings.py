@@ -48,12 +48,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+"""
+Use this instead if you have mysql running
+'default': {
+    'ENGINE': 'django.db.backends.mysql', 
+    'NAME': 'DB_NAME',
+    'USER': 'DB_USER',
+    'PASSWORD': 'DB_PASSWORD',
+    'HOST': 'localhost',   
+    'PORT': '3306',
+}
+"""
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+  
+
 }
 
 # Internationalization
