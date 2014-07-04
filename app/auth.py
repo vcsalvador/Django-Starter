@@ -17,7 +17,7 @@ def members(request):
 
 def user_logout(request):
 	logout(request)
-	return HttpResponse("Loged out")
+	return HttpResponse("Logged out")
 
 def user_register(request):
    	
