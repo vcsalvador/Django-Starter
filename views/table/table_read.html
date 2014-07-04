@@ -1,67 +1,45 @@
-
-
 {% extends "./base.html" %}
 
+{% block title %}  Show Tables   {% endblock %}
 
- {% block title %}  Show Tables   {% endblock %}
-
-
- {% block head %}  
-
-
-
- <script>
-
+{% block head %}  
+<script>
 $(document).ready(function() {
-
 
    $(".table-delete").click(function(event) {
     
       var table_name = $(this).parent().parent().find("td:first").text();
-          
-         
-      $.get("/table/delete", {table_name: table_name}, function(){
-
+                 
+      $.get("{% url 'table_delete' %}", {table_name: table_name}, function(){
          location.reload();
       });
 
-     
-
   });
 
-
+	$(".table-add-name").on("keydown",function(e){
+		if (e.keyCode==13)
+			 $(".table-add-button").click();
+	});
+	
   $(".table-add-button").click(function(event) {
     
-     var table_name = $(".table-add-name").val();
+    var table_name = $(".table-add-name").val();
 
     if (table_name.length == 0 ){
       $(".table-add-name").popover({ content : "Must enter table name", placement: "bottom"});
       $(".table-add-name").popover('show');
-     } else {
+    } else {
 
-         $.get("/table/create", {table_name: table_name}, function(){
-
-           location.reload();
-        });
-
-     }
-
-
+      $.get("{% url 'table_create' %}", {table_name: table_name}, function(){
+        location.reload();
+      });
+    }
   });
-
 });
-
-
- </script>
-
-
-
+</script>
  {% endblock %}
 
-
  {% block content %}
-
-{% include "./header.html" with page=page_active|default:0 %}
 
 
 <div id="main" class="panel panel-default">
@@ -70,25 +48,22 @@ $(document).ready(function() {
   </div>
   <div class="panel-body">
  <div class="input-group">
-                 <span class="input-group-addon">
-                 <button class="btn btn-xs btn-default table-add-button"><span class="glyphicon glyphicon-plus"></span> Add</button>
-                 </span>
-                <input type="text" class="form-control table-add-name" placeholder="Type table name here">
-              </div>
+         <span class="input-group-addon">
+         <button class="btn btn-xs btn-default table-add-button"><span class="glyphicon glyphicon-plus"></span> Add</button>
+         </span>
+        <input type="text" class="form-control table-add-name" placeholder="Type table name here">
+      </div>
 
 <table class="table">
-              <thead>
-                <tr>
-                 
-                  <th> Name</th>
+    <thead>
+      <tr>
+        <th> Name</th>
+        <th> Reservation Entry</th>
+          <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
 
-                  <th> Reservation Entry</th>
-                    <th>Manage</th>
-                </tr>
-              </thead>
-              <tbody>
-
-				    	
 				{% for r in res %}
 				<tr>
           {% if r.reserved == "" %}
@@ -102,29 +77,14 @@ $(document).ready(function() {
     <button class="btn btn-xs btn-default table-delete"><span class="glyphicon glyphicon-remove"></span>
     </button>
     </td>
-				  
-				</tr>
 
+  </tr>
+{% endfor %}
 
-				{% endfor %}
-
-
-              </tbody>
-
-              
-            </table>
-
-
-  
-
-  
-
-
+</tbody>
+</table>
 
 </div>
 </div>
-
-
-
 {% endblock %}
 

@@ -1,18 +1,21 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+
+from django.http import HttpResponse
 from django.shortcuts import *
 from app.models import *
 
 
 def food_create(request):
 
-    FoodEntry.objects.create(title=request.GET.get("food_name",""), price=request.GET.get("food_price",""))
-    return redirect("/")
+    f = FoodEntry.objects.create(title=request.GET.get("food_name",""), price=request.GET.get("food_price",""))
+    f.save()
+    return HttpResponse("Created " + request.GET.get("food_name",""))
 
 def food_delete(request):
 
     FoodEntry.objects.filter(title__iexact=request.GET.get("food_name","")).delete()
-    return redirect("/")
+    return HttpResponse("Deleted " + request.GET.get("food_name",""))
  
 def food_read(request):
   

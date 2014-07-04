@@ -13,11 +13,15 @@
 <script src="/static/bootstrap-select/bootstrap-select.min.js"></script>
 
 <link rel="stylesheet" href="/static/global.css">
+<script src="/static/global.js"></script>
+
 {% block head %}{% endblock %}
 
 </head>
 <body>
 
+
+{% include "./header.html" with username=username %}
 
 {% block content %}{% endblock %}
 </body>

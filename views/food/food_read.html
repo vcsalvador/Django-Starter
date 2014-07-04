@@ -1,34 +1,24 @@
-
-
 {% extends "./base.html" %}
+{% block title %}  Show Food Menu   {% endblock %}
 
-
- {% block title %}  Show Food Menu   {% endblock %}
-
-
- {% block head %}  
-
-
-
- <script>
-
+{% block head %}  
+<script>
 $(document).ready(function() {
 
-
-   $(".food-delete").click(function(event) {
-    
+   $(".food-delete").click(function(event) {  
       var food_name = $(this).parent().parent().find("td:first").text();
-          
          
-      $.get("/food/delete", {food_name: food_name}, function(){
+      $.get("{% url 'food_delete' %}", {food_name: food_name}, function(){
 
          location.reload();
       });
-
-     
-
   });
 
+$(".food-add-name, .food-add-price").on("keydown",function(e){
+		if (e.keyCode==13)
+			 $(".food-add-button").click();
+	});
+	
 
   $(".food-add-button").click(function(event) {
     
@@ -44,30 +34,17 @@ $(document).ready(function() {
 
     }else {
 
-         $.get("/food/create", {food_name: food_name, food_price: food_price}, function(){
+         $.get("{% url 'food_create' %}", {food_name: food_name, food_price: food_price}, function(){
 
            location.reload();
         });
-
      }
-
-
   });
-
 });
-
-
  </script>
-
-
-
  {% endblock %}
 
-
  {% block content %}
-
-{% include "header.html" with page=page_active|default:0 %}
-
 
 <div id="main" class="panel panel-default">
   <div class="panel-heading">
@@ -111,20 +88,13 @@ $(document).ready(function() {
 				</tr>
 
 
-				{% endfor %}
+{% endfor %}
 
 
-              </tbody>
+    </tbody>
 
-              
-            </table>
-
-
-  
-
-  
-
-
+    
+  </table>
 
 </div>
 </div>
@@ -132,4 +102,3 @@ $(document).ready(function() {
 
 
 {% endblock %}
-
