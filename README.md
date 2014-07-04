@@ -1,9 +1,9 @@
-### Django Sample App
+# Django Sample App
 
 Python Django MVC sample app showing restaraunt reservations for restaraunt tables and food menu items. Using Bootstrap & JQuery on the frontend and demonstrating Create/Read/Update/Delete routes for each object. There is  a login and registration system, with members-only access.
 
 
-##Setup
+###Setup
 
 Setup your database in config/settings.py: SQLite file is used default, but can be changed to mysql. Then inject the SQL to begin. Open Command Prompt and cd to the project directory. To inject the SQL models into db.sqlite3, execute:
 
@@ -17,7 +17,7 @@ If there are any pre-existing models, clear them with
 To tun the server execute: 
 ```python manage.py runserver 80```
 
-##Explanations
+###Explanations
 
 config/urls.py -- contains url paths that trigger the controllers such as: app.controllerFileName.method 
 
