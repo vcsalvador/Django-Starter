@@ -2,6 +2,23 @@
 
 {% block title %} Reservation Success {% endblock %}
 
+
+{% block head %}
+
+<script>
+$(document).ready(function() {
+    
+    setTimeout(function(){
+
+    	document.location.pathname="/reservation";
+
+    }, 5000)
+
+});
+</script>
+
+{% endblock %}
+
 {% block content %}
 
 

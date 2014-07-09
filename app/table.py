@@ -20,6 +20,7 @@ def table_read(request):
         else:
             TableList.append({'table': TableEntryObject.title, 'reserved': ReservationEntry.objects.get(table=TableEntryObject).name })
 
-    return render(request, 'table/table_read.html',
-          { 'page_active': 3,
+    return render(request, 'table/table_read.html',{ 
+        'page_active': 3,
+          'username': request.user.username if request.user.is_authenticated() else "",
           'res': TableList })

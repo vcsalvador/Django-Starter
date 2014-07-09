@@ -21,6 +21,9 @@ def food_read(request):
   
   FoodEntryAll = FoodEntry.objects.all()
 
-  return render(request, 'food/food_read.html',
-      { 'page_active': 4,
+  return render(request, 'food/food_read.html',      { 
+  	'page_active': 4,
+  	'username': request.user.username if request.user.is_authenticated() else "",
+        
+
       'res': FoodEntryAll })

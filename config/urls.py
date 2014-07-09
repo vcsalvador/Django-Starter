@@ -7,6 +7,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
 	url(r'^$', "app.reservation.reservation_setup", name="index"),
+
+
 	
 	url(r'login$', "app.auth.user_login", name="login"),
 	url(r'logout$', "app.auth.user_logout", name="logout"),

@@ -12,6 +12,8 @@ def reservation_read(request):
 
     return render(request, 'reservation/reservation_read.html',  { 
         'page_active': 2,
+        'username': request.user.username if request.user.is_authenticated() else "",
+        
         'res': res  })
 
 
